@@ -1,0 +1,74 @@
+﻿<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+        <a class="btn btn-danger pull-left f360-navbar-button" href="#/{{username}}/spots/list">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+		<a	class="btn btn-success pull-right f360-navbar-button"
+			ng-click="update()">
+			<span class="glyphicon glyphicon-ok"></span>
+		</a>
+		<div class="navbar-header">
+			<span class="navbar-brand">Edit Spot</span>
+		</div>
+	</div>
+</div>
+Name
+<input ng-model="spot.name" class="form-control" placeholder="Name" type="text"/>
+<div class="row">
+    <div class="col-xs-6">
+        Latitude
+        <input ng-model="spot.latitude" class="form-control" placeholder="0.00" type="number" pattern="[0-9]*.[0-9][0-9][0-9][0-9]" />
+    </div>
+    <div class="col-xs-6">
+        Longitude
+        <input ng-model="spot.longitude" class="form-control" placeholder="0.00" type="number" pattern="[0-9]*.[0-9][0-9][0-9][0-9]" />
+    </div>
+</div>
+Street
+<input ng-model="spot.street" class="form-control" placeholder="Street" type="text"/>
+City
+<input ng-model="spot.city" class="form-control" placeholder="City" type="text"/>
+<div class="row">
+    <div class="col-xs-6">
+        State
+        <input ng-model="spot.state" class="form-control" placeholder="State" type="text" />
+    </div>
+    <div class="col-xs-6">
+        ZIP
+        <input ng-model="spot.zip" class="form-control" placeholder="01234" type="number" pattern="[0-9][0-9][0-9][0-9][0-9]" />
+    </div>
+</div>
+Country
+<input ng-model="spot.country" class="form-control" placeholder="Country" type="text"/>
+Water
+<select ng-model="spot.water" class="form-control" placeholder="Water">
+    <option value="Salt water">Salt water</option>
+    <option value="Fresh water">Fresh water</option>
+</select>
+Species
+<div angucomplete-alt id="ex1"  placeholder="{{spot.species ? spot.commonName + ' (' + spot.species + ')' : 'Type for Species...'}}" pause="100" selected-object="spot.species" local-data="species" search-fields="CommonName,BracesLeft,ScientificName,Braces,BracesRight" title-field="CommonName,BracesLeft,ScientificName,BracesRight"  minlength="1" input-class="form-control"/> </div>
+
+Notes
+<textarea ng-model="spot.notes" class="form-control" placeholder="Notes"></textarea>
+
+<div ng-hide="!spot.images || !spot.images.length">
+    Photos
+    <a href="#/{{username}}/spots/{{spot._id}}/photos" class="btn btn-success btn-block">
+        View Photos
+    </a>
+</div>
+
+Upload Photo
+<form id="uploadForm"
+      enctype="multipart/form-data"
+      action="/spots/photo"
+      method="post">
+    <input type="hidden" name="username" value="{{username}}" />
+    <input type="hidden" name="spotId" value="{{spot._id}}" />
+    <input type="file" name="userPhoto" class="form-control" />
+    <button type="submit" class="btn btn-primary btn-block">Upload Image</button>
+</form>
+
+<a ng-click="remove()" class="btn btn-danger btn-block f360-nudge-down">
+    Delete
+</a>

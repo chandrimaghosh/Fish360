@@ -1,0 +1,31 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <a href="#/{{username}}/reports"
+           class="btn btn-danger pull-left f360-navbar-button">
+           <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <div class="navbar-header">
+           <span class="navbar-brand">{{report.name}}</span>
+        </div>
+    </div>
+</div>
+
+<div ng-show="!data" class="alert alert-success" role="alert">
+    No Results
+</div>
+
+<table class="table table-condensed">
+    <tbody>
+        <tr ng-repeat="(key, value) in data" ng-class="{'active': key.substring(4,6)=='01'}">
+            <td width="10%" style="vertical-align: bottom">
+                {{key | f360MonthName}}
+            </td>
+            <td>
+                <div ng-show="key.substring(4,6)=='01'" style="text-align:right">{{key.substring(0,4)}}</div>
+                <div ng-show="value" class="f360-bar" style="width: {{value*100/max}}%">
+                    <span class="pull-right">{{value}}</span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

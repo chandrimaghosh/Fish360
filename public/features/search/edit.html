@@ -1,0 +1,259 @@
+﻿<style>
+	.f360-navbar-button {
+		position: relative;
+		top: 7px;
+	}
+	input[type=date] {
+		width: 100%;
+	}
+</style>
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<back-button></back-button>
+		<a	class="btn btn-success pull-right f360-navbar-button"
+			ng-click="update()">
+			<span class="glyphicon glyphicon-ok"></span>
+		</a>
+		<div class="navbar-header">
+			<span class="navbar-brand">Edit Search</span>
+		</div>
+	</div>
+</div>
+
+Search Name
+<input ng-model="search.name" class="form-control" placeholder="Search" type="text" style="margin-top : 5px"/>
+
+Search For
+<select ng-model="search.searchType" class="form-control">
+	<option>All</option>
+	<option>Trips</option>
+	<option>Fish</option>
+	<option>Spots</option>
+	<option>Rods</option>
+	<option>Reels</option>
+	<option>Lines</option>
+	<option>Leaders</option>
+	<option>Presentations</option>
+</select>
+<div ng-show="search.searchType == 'Presentations'">
+	Presentation Name
+	<input type="text" class="form-control" placeholder="Title" ng-model="search.presentations.name"/>
+	Presentation Type
+	<select class="form-control" placeholder="Title" ng-model="search.presentations.type">
+		<option>Lure</option>
+		<option>Fly</option>
+		<option>Bate</option>
+	</select>
+	<div ng-show="search.presentations.type == 'Lure'">
+		Lure Model
+		<input type="text" class="form-control" placeholder="Lure Model" ng-model="search.presentations.model"/>
+		Lure Color
+		<input type="text" class="form-control" placeholder="Lure Color" ng-model="search.presentations.color"/>
+		Lure Length
+		<input type="text" class="form-control" placeholder="Lure Length" ng-model="search.presentations.length"/>
+		Lure Weight
+		<input type="text" class="form-control" placeholder="Lure Weight" ng-model="search.presentations.weight"/>
+		Lure Manufacturer
+		<input type="text" class="form-control" placeholder="Lure Manufacturer" ng-model="search.presentations.manufacturer"/>
+	</div>
+	<div ng-show="search.presentations.type == 'Fly'">
+		Fly Pattern
+		<input type="text" class="form-control" placeholder="Fly Pattern" ng-model="search.presentations.pattern"/>
+		Fly Color
+		<input type="text" class="form-control" placeholder="Fly Color" ng-model="search.presentations.color"/>
+	</div>
+	<div ng-show="search.presentations.type == 'Bate'">
+		&nbsp;
+	</div>
+</div>
+<div ng-show="search.searchType == 'Leaders'">
+	Leader Name
+	<input type="text" class="form-control" placeholder="Leader Name" ng-model="search.leaders.name"/>
+	Line
+	<input type="text" class="form-control" placeholder="Line" ng-model="search.leaders.line"/>
+</div>
+<div ng-show="search.searchType == 'Reels'">
+	Line Name
+	<input type="text" class="form-control" placeholder="Line Name" ng-model="search.lines.name"/>
+	Manufacturer
+	<input type="text" class="form-control" placeholder="Manufacturer" ng-model="search.lines.manufacturer"/>
+	Model
+	<input type="text" class="form-control" placeholder="Model" ng-model="search.lines.model"/>
+	Strength
+	<input type="text" class="form-control" placeholder="Strength" ng-model="search.lines.strength"/>
+	Color
+	<input type="text" class="form-control" placeholder="Color" ng-model="search.lines.color"/>
+</div>
+<div ng-show="search.searchType == 'Reels'">
+	Reel Name
+	<input type="text" class="form-control" placeholder="Reel Name" ng-model="search.reels.name"/>
+	Manufacturer
+	<input type="text" class="form-control" placeholder="Manufacturer" ng-model="search.reels.manufacturer"/>
+	Model
+	<input type="text" class="form-control" placeholder="Model" ng-model="search.reels.model"/>
+	Weight
+	<input type="text" class="form-control" placeholder="Weight" ng-model="search.reels.weight"/>
+	Gear Ratio
+	<input type="text" class="form-control" placeholder="Gear Ratio" ng-model="search.reels.gearRatio"/>
+	Line Capacity
+	<input type="text" class="form-control" placeholder="Line Capacity" ng-model="search.reels.lineCapacity"/>
+	Max Drag
+	<input type="text" class="form-control" placeholder="Max Drag" ng-model="search.reels.maxDrag"/>
+</div>
+<div ng-show="search.searchType == 'Rods'">
+	Rod Name
+	<input type="text" class="form-control" placeholder="Rod Name" ng-model="search.rods.name"/>
+	Manufacturer
+	<input type="text" class="form-control" placeholder="Manufacturer" ng-model="search.rods.manufacturer"/>
+	Model
+	<input type="text" class="form-control" placeholder="Model" ng-model="search.rods.model"/>
+	Length
+	<input class="form-control" placeholder="Length" ng-model="search.rods.length" type="number" pattern="[0-9]*"/>
+	Action
+	<input type="text" class="form-control" placeholder="Title" ng-model="search.rods.action"/>
+	Power
+	<input type="text" class="form-control" placeholder="Title" ng-model="search.rods.power"/>
+	Pieces
+	<input type="text" class="form-control" placeholder="Title" ng-model="search.rods.pieces"/>
+</div>
+<div ng-show="search.searchType == 'Spots'">
+	Spot Name
+	<input type="text" class="form-control" placeholder="Spot Name" ng-model="search.spots.name"/>
+	Street
+	<input type="text" class="form-control" placeholder="Street" ng-model="search.spots.street"/>
+	City
+	<input type="text" class="form-control" placeholder="Boston" ng-model="search.spots.city"/>
+	State
+	<input type="text" class="form-control" placeholder="MA" ng-model="search.spots.state"/>
+	ZIP
+	<input class="form-control" placeholder="01234" ng-model="search.spots.zip" type="number" pattern="[0-9][0-9][0-9][0-9][0-9]"/>
+	Country
+	<input type="text" class="form-control" placeholder="USA" ng-model="search.spots.country"/>
+	Water
+	<input type="text" class="form-control" placeholder="Water" ng-model="search.spots.water"/>
+</div>
+<div ng-show="search.searchType == 'Trips'">
+	Trip Title
+	<input type="text" class="form-control" placeholder="Title" ng-model="search.trips.title"/>
+	Start Date/Time
+	<div class="row">
+		<div class="col-xs-2">
+			<select ng-model="search.trips.fromDateComparator" class="form-control">
+				<option value=''>Any</option>
+				<option>Before</option>
+				<option>On</option>
+				<option>After</option>
+			</select>
+		</div>
+		<div class="col-xs-5">
+			<input type="date" class="form-control" ng-model="search.trips.fromDate"/>
+		</div>
+		<div class="col-xs-5">
+			<input type="time" class="form-control" ng-model="search.trips.fromTime"/>
+		</div>
+	</div>
+	End Date/Time
+	<div class="row">
+		<div class="col-xs-2">
+			<select ng-model="search.trips.toDateComparator" class="form-control">
+				<option value=''>Any</option>
+				<option>Before</option>
+				<option>On</option>
+				<option>After</option>
+			</select>
+		</div>
+		<div class="col-xs-5">
+			<input type="date" class="form-control" ng-model="search.trips.toDate"/>
+		</div>
+		<div class="col-xs-5">
+			<input type="time" class="form-control" ng-model="search.trips.toTime"/>
+		</div>
+	</div>
+</div>
+<div ng-show="search.searchType == 'Fish'">
+	From Date/Time
+	<div class="row">
+		<div class="col-xs-6">
+			<input ng-model="search.fish.caughtFromDate" class="form-control" type="date"/>
+		</div>
+		<div class="col-xs-6">
+			<input ng-model="search.fish.caughtFromTime" class="form-control" type="time"/>
+		</div>
+	</div>
+	To Date/Time
+	<div class="row">
+		<div class="col-xs-6">
+			<input ng-model="search.fish.caughtToDate" class="form-control" type="date"/>
+		</div>
+		<div class="col-xs-6">
+			<input ng-model="search.fish.caughtToTime" class="form-control" type="time"/>
+		</div>
+	</div>
+	Species
+	<div angucomplete-alt id="ex1"  placeholder="{{search.fish.species ? search.fish.commonName + ' (' + search.fish.species + ')' : 'Type for Species...'}}" pause="100" selected-object="search.fish.species" local-data="species" search-fields="CommonName,BracesLeft,ScientificName,Braces,BracesRight" title-field="CommonName,BracesLeft,ScientificName,BracesRight"  minlength="1" input-class="form-control"/> </div>
+	Weight
+	<div class="row">
+		<div class="col-xs-6">
+			<select class="form-control" ng-model="search.fish.weightComparator">
+				<option value=''>Any</option>
+				<option>Less Than</option>
+				<option>Equal To</option>
+				<option>Greater Than</option>
+			</select>
+		</div>
+		<div class="col-xs-6">
+			<input ng-model="search.fish.weightValue" class="form-control" placeholder="0.00" type="number" format="number"/>
+		</div>
+	</div>
+	Length
+	<div class="row">
+		<div class="col-xs-6">
+			<select ng-model="search.fish.lengthComparator" class="form-control">
+				<option value=''>Any</option>
+				<option>Less Than</option>
+				<option>Equal To</option>
+				<option>Greater Than</option>
+			</select>
+		</div>
+		<div class="col-xs-6">
+			<input ng-model="search.fish.lengthValue" class="form-control" placeholder="0.00" type="number" format="number"/>
+		</div>
+	</div>
+	Girth
+	<div class="row">
+		<div class="col-xs-6">
+			<select class="form-control" ng-model="search.fish.girthComparator">
+				<option value=''>Any</option>
+				<option>Less Than</option>
+				<option>Equal To</option>
+				<option>Greater Than</option>
+			</select>
+		</div>
+		<div class="col-xs-6">
+			<input ng-model="search.fish.girthValue" class="form-control" placeholder="0.00" type="number" format="number"/>
+		</div>
+	</div>
+	Presentation
+	<select ng-model="search.fish.presentation" class="form-control">
+		<option ng-repeat="gear in gears | filter : gear.gearType = 'Presentation'" value="{{gear.name}}">{{gear.name}}</option>
+	</select>
+	Spot
+	<select ng-model="search.fish.spot" class="form-control">
+		<option ng-repeat="spot in spots" value="{{spot.name}}">{{spot.name}}</option>
+	</select>
+	Moon Phase
+	<select ng-model="search.fish.moonphase" class="form-control">
+		<option>New Moon</option>
+		<option>Waxing Crescent</option>
+		<option>First Quarter</option>
+		<option>Waxing Gibbous</option>
+		<option>Full Moon</option>
+		<option>Waning Gibbous</option>
+		<option>Third Quarter</option>
+		<option>Waning Crescent</option>
+	</select>
+</div>
+
+<a ng-click="remove()" class="btn btn-danger btn-block">
+    Delete
+</a>

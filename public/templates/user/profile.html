@@ -1,0 +1,80 @@
+<style>
+	.f360-navbar-button {
+		position: relative;
+		top: 7px;
+	}
+</style>
+
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<a	href="#/{{username}}/home" class="btn btn-danger pull-left f360-navbar-button">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<button class="btn btn-success pull-right f360-navbar-button" ng-click="updateProfile()">
+			<span class="glyphicon glyphicon-ok"></span>
+		</button>
+		<div class="navbar-header">
+			<span class="navbar-brand">Profile</span>
+		</div>
+	</div>
+</div>
+<!--<img ng-show="user.images.length > 0" ng-src="uploads/thm_{{user.images[user.images.length-1]}}" width="300px" style="padding-top: 5px;" />-->
+<img ng-show="user.images.length > 0"
+	 ng-src="uploads/{{user.images[user.images.length-1]}}"
+	 style="padding-top: 5px;"
+	 class="img-responsive center-block"/>
+<br/>
+First Name
+<input ng-model="user.firstName" class="form-control"/>
+Last Name
+<input ng-model="user.lastName" class="form-control"/>
+Plan
+<input ng-model="user.plan" class="form-control" readonly=readonly/>
+<a href="#/{{username}}/upgrade" class="btn btn-success btn-block">Upgrade</a>
+Email
+<input ng-model="user.email" class="form-control" type="email"/>
+Username
+<input ng-model="user.username" class="form-control" readonly="readonly"/>
+Password
+<input ng-model="user.password" class="form-control" type="password"/>
+Confirm Password
+<input ng-model="user.password2" class="form-control" type="password"/>
+
+<!--Edition-->
+<!--<select ng-model="user.edition" class="form-control">-->
+	<!--<option value="">Community</option>-->
+	<!--<option>Angler</option>-->
+	<!--<option>Professional</option>-->
+<!--</select>-->
+Date of Birth
+<input ng-model="user.dateOfBirth" class="form-control" type="date"/>
+Picture
+<form id="uploadForm"
+      enctype="multipart/form-data"
+      action="/profile/photo"
+      method="post">
+    <input type="hidden" name="username" value="{{user.username}}" />
+    <input type="hidden" name="userId" value="{{user._id}}" />
+    <input type="file" name="userPhoto" class="form-control" />
+    <button type="submit" class="btn btn-primary btn-block">Upload Image</button>
+</form>
+Units
+<select ng-model="user.units" class="form-control">
+	<option value="">Standard</option>
+	<option>Metric</option>
+</select>
+Default Species
+<div angucomplete-alt id="ex1" placeholder="{{user.species === undefined ? 'Select Default Species ...' : user.commonName+ ' (' + user.species + ')'}}" pause="100" selected-object="user.species" 
+local-data="species" search-fields="CommonName,BracesLeft,ScientificName,Braces,BracesRight" title-field="CommonName,BracesLeft,ScientificName,BracesRight"  minlength="1" input-class="form-control"/> </div>
+Sort Fish By
+<select ng-model="user.sortFishBy" class="form-control">
+	<option value="">Date Caught</option>
+	<option>Length</option>
+	<option>Weight</option>
+	<option>Species</option>
+</select>
+<input type="checkbox" ng-model="user.shareAggregate" class="form-control" style="width: 40px;float: left;margin-right: 5px;">
+Share aggregated
+<p >Non-personally identifiable Fish Catch Data with third parties for the benefit of the recreational fishery. </p>
+<a href="#/termsReadOnly" class="btn btn-success btn-block">User Agreement
+</a>

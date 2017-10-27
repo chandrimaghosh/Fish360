@@ -1,0 +1,39 @@
+﻿<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<!--<back-button></back-button>-->
+		<a	href="#/{{username}}/trip/list" class="btn btn-danger pull-left f360-navbar-button">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a	href="#/{{username}}/trip/new" class="btn btn-success pull-right f360-navbar-button"
+			ng-click="create()">
+			<span class="glyphicon glyphicon-ok"></span>
+		</a>
+		<div class="navbar-header">
+			<span class="navbar-brand">New Trip</span>
+		</div>
+	</div>
+</div>
+Title
+<input ng-model="newTrip.title" class="form-control" placeholder="Title"/>
+Start Date/Time
+<div class="row">
+    <div class="col-xs-6">
+        <input ng-model="newTrip.start" class="form-control" type="date" />
+    </div>
+    <div class="col-xs-6">
+        <input ng-model="newTrip.startTime" class="form-control" type="time" />
+    </div>
+</div>
+End Date/Time
+<div class="row">
+    <div class="col-xs-6">
+        <input ng-model="newTrip.end" class="form-control" type="date" />
+    </div>
+    <div class="col-xs-6">
+        <input ng-model="newTrip.endTime" class="form-control" type="time" />
+    </div>
+</div>
+Notes
+<textarea ng-model="newTrip.notes" class="form-control" placeholder="Notes">
+
+</textarea>

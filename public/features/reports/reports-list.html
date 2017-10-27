@@ -1,0 +1,27 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <a	href="#/{{username}}/home" class="btn btn-danger pull-left f360-navbar-button">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a ng-click="addNewReport()" class="btn btn-success pull-right f360-navbar-button">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <div class="navbar-header">
+            <span class="navbar-brand">Reports</span>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr ng-repeat="report in reports">
+        <td>
+            <a href="#/{{username}}/reports/{{report._id}}/{{report.type}}">
+                <span class="glyphicon glyphicon-align-left"></span>
+                {{report.name}}
+            </a>
+            <a href="#/{{username}}/reports/{{report._id}}" class="pull-right">
+                <span class="pull-right glyphicon glyphicon-pencil"></span>
+            </a>
+        </td>
+    </tr>
+</table>

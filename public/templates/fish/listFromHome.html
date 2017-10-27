@@ -1,0 +1,42 @@
+﻿<style>
+	.f360-navbar-button {
+		position: relative;
+		top: 7px;
+	}
+	.f360-right-arrow {
+		font-size: 1.5em;
+	}
+</style>
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<a href="#/{{username}}/home" class="btn btn-danger pull-left f360-navbar-button">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<div class="navbar-header">
+			<span class="navbar-brand">Fish</span>
+		</div>
+	</div>
+</div>
+<table class="table">
+	<tr ng-repeat="fsh in fish | orderBy : 'lastUpdated' : true">
+
+		<td>
+			<a href="#/{{username}}/trip/{{fsh.trip_id}}/fish/{{fsh._id}}/edit">
+				{{fsh.commonName}} ({{fsh.species}})<br />
+				<span ng-show="fsh.weight">{{fsh.weight}} {{weightUnits}}</span><span ng-show="fsh.length">, {{fsh.length}} {{lengthUnits}}</span>
+			</a>
+		</td>
+		<td>
+			<a class="pull-right" href="#/{{username}}/trip/{{fsh.trip_id}}/fish/{{fsh._id}}/share">
+				<span class="glyphicon glyphicon-envelope"> </span>
+			</a>
+			&nbsp; &nbsp;
+		</td>
+		<td>
+			<a class="pull-right" href="#/{{username}}/trip/{{fsh.trip_id}}/fish/{{fsh._id}}/edit">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</a>
+			</td>
+		</tr>
+	</tr>
+</table>

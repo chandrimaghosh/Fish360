@@ -1,0 +1,40 @@
+﻿<style>
+	.f360-navbar-button {
+		position: relative;
+		top: 7px;
+	}
+	.f360-right-arrow {
+		font-size: 1.5em;
+	}
+</style>
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<back-button></back-button>
+		<div class="navbar-header">
+			<span class="navbar-brand">Results</span>
+		</div>
+	</div>
+</div>
+<table class="table">
+	<tr ng-repeat="searchResult in searchResults | orderBy : 'lastUpdated' : true | filter : search.searchType = searchType">
+		<td ng-switch="searchResult.type">
+			<a ng-switch-when="GEAR" href="#/{{username}}/gear/{{searchResult._id}}/edit">
+				{{searchResult.name}}
+			</a>
+			<a ng-switch-when="SPOT" href="#/{{username}}/spots/{{searchResult._id}}/edit">
+				{{searchResult.name}}
+			</a>
+			<a ng-switch-when="TRIP" href="#/{{username}}/trip/{{searchResult._id}}/edit">
+				{{searchResult.title}}
+			</a>
+			<a ng-switch-when="FISH" class="pull-right" href="#/{{username}}/trip/{{searchResult.trip_id}}/fish/{{searchResult._id}}/edit">
+				<span class="glyphicon glyphicon-chevron-right f360-right-arrow"></span>
+			</a>
+			<a ng-switch-when="FISH" href="#/{{username}}/trip/{{searchResult.trip_id}}/fish/{{searchResult._id}}/edit">
+				{{searchResult.commonName}} ({{searchResult.species}})<br/>
+                <span ng-show="searchResult.weight">{{searchResult.weight}} lbs</span><span ng-show="searchResult.length">, {{searchResult.length}} in</span>
+			</a>
+
+		</td>
+	</tr>
+</table>
